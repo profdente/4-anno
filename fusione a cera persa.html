@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusione a Cera Persa - V Anno Odontotecnico (Prof. Dente Vincenzo)</title>
+    <style>
+        :root {
+            --bg-main: #f1f5f9;
+            --bg-card: #ffffff;
+            --border: #cbd5e1;
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-ebm: #059669;
+            --accent-ebm-bg: #ecfdf5;
+            --accent-danger: #dc2626;
+            --accent-danger-bg: #fef2f2;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        body.mode-it .en-text { display: none !important; }
+        body.mode-en .it-text { display: none !important; }
+        body.mode-all .it-text, body.mode-all .en-text { display: block; }
+
+        .en-text { color: #475569; font-style: italic; margin-top: 4px; }
+
+        header {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border-bottom: 5px solid var(--primary);
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-title h1 { font-size: 1.5rem; font-weight: 800; color: #ffffff; }
+        .header-title p { font-size: 0.9rem; color: #94a3b8; margin-top: 4px; }
+
+        .header-right { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+        .lang-switch {
+            display: flex;
+            background: #1e293b;
+            border: 1.5px solid #334155;
+            border-radius: 8px;
+            padding: 3px;
+            gap: 3px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            padding: 0.45rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        .lang-btn.active { background: var(--primary); color: #ffffff; }
+
+        .badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .badge { font-size: 0.78rem; padding: 0.4rem 0.75rem; border-radius: 6px; font-weight: 700; font-family: monospace; }
+        .badge-v { background: #0284c7; color: #ffffff; }
+        .badge-prof { background: #8b5cf6; color: #ffffff; }
+
+        .slide-card {
+            display: block !important;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .slide-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .slide-tag {
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .slide-title { font-size: 1.35rem; font-weight: 800; color: #0f172a; }
+
+        .course-banner {
+            background: #e0f2fe;
+            border-left: 5px solid var(--primary);
+            padding: 1.1rem;
+            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            color: #0369a1;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-cols: 1fr;
+            gap: 1.25rem;
+            margin: 1.25rem 0;
+        }
+        @media (min-width: 768px) { .comparison-grid { grid-template-cols: 1fr 1fr; } }
+
+        .box-old { background: var(--accent-danger-bg); border: 2px solid #fca5a5; border-radius: 10px; padding: 1.1rem; }
+        .box-ebm { background: var(--accent-ebm-bg); border: 2px solid #6ee7b7; border-radius: 10px; padding: 1.1rem; }
+        .box-title { font-size: 0.85rem; font-weight: 800; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .box-old .box-title { color: var(--accent-danger); }
+        .box-ebm .box-title { color: var(--accent-ebm); }
+
+        .diagram-box {
+            background: #0f172a;
+            color: #38bdf8;
+            font-family: monospace;
+            padding: 1.2rem;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            line-height: 1.45;
+            overflow-x: auto;
+            white-space: pre;
+            margin: 1.25rem 0;
+        }
+
+        .formula-box {
+            background: #f1f5f9;
+            border-left: 4px solid var(--primary);
+            padding: 1rem 1.2rem;
+            margin: 1.25rem 0;
+            font-family: Georgia, serif;
+            font-size: 1.05rem;
+            color: #0f172a;
+            font-weight: bold;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.88rem; }
+        th { background: #0f172a; color: #ffffff; padding: 0.9rem; border: 1px solid #334155; font-weight: 800; text-align: left; }
+        td { padding: 0.9rem; border: 1px solid var(--border); color: #1e293b; background: #ffffff; }
+        tr:nth-child(even) td { background: #f8fafc; }
+
+        .protocol-steps { counter-reset: step-counter; list-style: none; padding: 0; margin: 1.25rem 0; }
+        .protocol-step { position: relative; padding-left: 3.2rem; margin-bottom: 1.25rem; font-size: 0.95rem; }
+        .protocol-step::before {
+            counter-increment: step-counter; content: counter(step-counter); position: absolute; left: 0; top: 0; width: 34px; height: 34px; background: #f1f5f9; border: 2px solid var(--primary); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;
+        }
+
+        .quiz-container {
+            background: #f8fafc;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 1.5rem;
+        }
+        .quiz-title { font-weight: 800; color: #0f172a; margin-bottom: 0.75rem; font-size: 1rem; }
+        .quiz-option { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem; border-radius: 8px; border: 2px solid var(--border); cursor: pointer; margin-top: 0.5rem; font-size: 0.9rem; background: #ffffff; font-weight: 600; }
+        .quiz-option:hover { border-color: var(--primary); background: #f0f9ff; }
+        .btn-check { margin-top: 1rem; background: var(--primary); color: white; border: none; padding: 0.75rem 1.4rem; border-radius: 8px; font-size: 0.88rem; font-weight: 800; cursor: pointer; }
+        .feedback-box { font-size: 0.9rem; font-weight: 700; margin-top: 0.85rem; padding: 0.85rem 1.1rem; border-radius: 8px; display: none; }
+        .feedback-box.correct { display: block; background: #dcfce7; border: 2px solid #4ade80; color: #166534; }
+        .feedback-box.wrong { display: block; background: #fee2e2; border: 2px solid #f87171; color: #991b1b; }
+    </style>
+</head>
+<body class="mode-all">
+
+    <header>
+        <div class="header-container">
+            <div class="header-title">
+                <h1>
+                    <span class="it-text">Fusione a Cera Persa - Laboratorio Odontotecnico V Anno</span>
+                    <span class="en-text">Lost-Wax Casting - Dental Technology 5th Year</span>
+                </h1>
+                <p>
+                    <span class="it-text">Analisi Critica Integrata EBM, Metallurgia Avanzata & Normative ISO 15912 / ISO 22674</span>
+                    <span class="en-text">Integrated EBM Critical Analysis, Advanced Metallurgy & ISO 15912 / ISO 22674 Standards</span>
+                </p>
+            </div>
+            <div class="header-right">
+                <div class="lang-switch">
+                    <button id="btn-lang-it" onclick="setMode('it')" class="lang-btn">🇮🇹 IT</button>
+                    <button id="btn-lang-en" onclick="setMode('en')" class="lang-btn">🇬🇧 EN</button>
+                    <button id="btn-lang-all" onclick="setMode('all')" class="lang-btn active">🌐 ALL</button>
+                </div>
+                <div class="badges">
+                    <span class="badge badge-v">🎓 ESAME DI STATO V ANNO</span>
+                    <span class="badge badge-prof">👨‍🏫 Prof. Dente Vincenzo</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SLIDE / MODULO 1 -->
+    <div class="slide-card" id="modulo-1">
+        <div class="slide-header">
+            <span class="slide-tag">
+                <span class="it-text">SLIDE 01 • PRECISIONE PROTESICA & CHIUSURA CERVICALE</span>
+                <span class="en-text">SLIDE 01 • PROSTHETIC PRECISION & CERVICAL FIT</span>
+            </span>
+        </div>
+        <h2 class="slide-title">
+            <span class="it-text">Adattamento Marginale, Spazio di Cementazione & Falso Mito della Grana Cristallina</span>
+            <span class="en-text">Marginal Fit, Cement Space & Grain Size Fallacy</span>
+        </h2>
+
+        <div class="course-banner">
+            <strong class="it-text">NUCLEO DIDATTICO EBM: FISICA E GEOMETRIA DEL MARGINE PROTESICO</strong>
+            <strong class="en-text">CORE EBM TOPIC: PHYSICS AND GEOMETRY OF PROSTHETIC MARGINS</strong>
+            <p class="it-text">La precisione della fusione metallica è determinata dall'adattamento tridimensionale geometrico (<i>Marginal and Internal Fit</i>) espresso in micrometri (µm). È un grave errore concettuale confondere la dimensione dei grani cristallini — che influenza unicamente le proprietà meccaniche di resistenza e snervamento del metallo — con la precisione dimensionale dell'impronta e della fusione.</p>
+            <p class="en-text">Prosthetic casting accuracy is defined by 3D geometric Marginal and Internal Fit measured in micrometers (µm). Grain size controls mechanical yield strength and hardness, but does not govern casting geometric accuracy.</p>
+        </div>
+
+        <div class="formula-box">
+            <span class="it-text">Gap Marginale Clinicamente Accettabile ≤ 50 – 120 µm (Target d'Eccellenza EBM &lt; 50 µm)</span>
+            <span class="en-text">Clinically Acceptable Marginal Gap ≤ 50 – 120 µm (EBM Target &lt; 50 µm)</span>
+        </div>
+
+        <div class="comparison-grid">
+            <div class="box-old">
+                <div class="box-title">
+                    <span class="it-text">✕ Concetto Empirico Errato (PPT Classico)</span>
+                    <span class="en-text">✕ Obsolete Empirical Concept</span>
+                </div>
+                <p class="it-text">"La precisione della fusione dipende dalla finezza della grana cristallina. I margini imperfetti o spessi devono essere riadattati o bruniti a mano con frese e brunitori dopo la colata."</p>
+                <p class="en-text">"Casting precision depends on fine grain size. Imperfect thick margins can be manually burnished after casting."</p>
+            </div>
+            <div class="box-ebm">
+                <div class="box-title">
+                    <span class="it-text">✓ Standard Scientifico Validato (EBM & ISO)</span>
+                    <span class="en-text">✓ Validated Scientific Standard (EBM & ISO)</span>
+                </div>
+                <p class="it-text">La precisione è dettata dal bilanciamento delle espansioni del rivestimento. La brunitura manuale sulle leghe vili (Cr-Co, Ni-Cr) genera incrudimento superficiale, microfratture ed il futuro spallamento (<i>chipping</i>) della ceramica.</p>
+                <p class="en-text">Accuracy is governed by balanced investment expansion. Manual burnishing on base metals causes work hardening and porcelain chipping.</p>
+            </div>
+        </div>
+
+        <div class="diagram-box">
+Profilo di Chiusura Cervicale / Cervical Margin Profile:
+
+       [ Corona Protesica Fusa / Cast Metal Crown ]
+              \                         /
+               \   INTERNAL GAP:       /  &lt;--- Spazio Cemento / Cement Space: 30 – 50 µm
+                \  (30 - 50 µm)       /
+     ===========[ MARGINAL GAP ]=========== &lt;--- Tolleranza Clinica EBM: ≤ 50 - 120 µm
+              /                         \
+       [ Preparazione Dentale Clinica / Abutment Prep ]
+        </div>
+
+        <h3 style="margin-top:1.5rem; color:#0f172a;">
+            <span class="it-text">Analisi Critica della Letteratura Protesica (McLean & von Fraunhofer):</span>
+            <span class="en-text">Clinical Literature Analysis (McLean & von Fraunhofer):</span>
+        </h3>
+        <ol class="protocol-steps">
+            <li class="protocol-step">
+                <strong><span class="it-text">Spazio di Cementazione (Internal Fit):</span><span class="en-text">Cement Space (Internal Fit):</span></strong>
+                <p class="it-text">Uno spazio interno per il cemento compreso tra 30 e 50 µm (creato con 3–4 strati di lacca distanziatrice sul moncone o impostato come offset digitale nel CAD) è indispensabile per consentire il deflusso del cemento ed evitare il precontatto idraulico durante l'inserzione.</p>
+                <p class="en-text">A 30–50 µm internal cement gap (die spacer or CAD offset) is mandatory to ensure hydraulic cement escape and prevent seating high.</p>
+            </li>
+            <li class="protocol-step">
+                <strong><span class="it-text">Preservazione del Bordo Cervicale:</span><span class="en-text">Cervical Margin Integrity:</span></strong>
+                <p class="it-text">I bordi della modellazione in cera devono avere uno spessore minimo di 0.2–0.3 mm. Riduzioni eccessive provocano l'incompleto riempimento del metallo (<i>short casting</i>) o la fusione irregolare dei bordi.</p>
+                <p class="en-text">Wax pattern margins must maintain a minimum 0.2–0.3 mm thickness to avoid short castings or distorted edges.</p>
+            </li>
+        </ol>
+
+        <div class="quiz-container">
+            <div class="quiz-title">
+                <span class="it-text">Verification Gate 1 (V Anno - Precisione & Gap Marginale)</span>
+                <span class="en-text">Verification Gate 1 (5th Year - Precision & Marginal Gap)</span>
+            </div>
+            <p class="it-text">Qual è la tolleranza clinica massima accettabile per il gap marginale secondo la letteratura EBM (ADA Spec. No. 8 / McLean)?</p>
+            <p class="en-text">What is the maximum acceptable clinical marginal gap limit according to EBM literature?</p>
+            <label class="quiz-option"><input type="radio" name="q1" value="a"> <span>A) Fino a 300 µm, rimediando con brunitura e lima manuale. / Up to 300 µm, fixed by manual burnishing.</span></label>
+            <label class="quiz-option"><input type="radio" name="q1" value="b"> <span>B) Clinicamente accettabile ≤ 50 – 120 µm (con target d'eccellenza &lt; 50 µm). / Clinically acceptable ≤ 50 – 120 µm.</span></label>
+            <button onclick="checkQuiz('q1', 'b', 'feedback-1')" class="btn-check">
+                <span class="it-text">Verifica Risposta</span><span class="en-text">Check Answer</span>
+            </button>
+            <div id="feedback-1" class="feedback-box"></div>
+        </div>
+    </div>
+
+    <!-- SLIDE / MODULO 2 -->
+    <div class="slide-card" id="modulo-2">
+        <div class="slide-header">
+            <span class="slide-tag">
+                <span class="it-text">SLIDE 02 • TERMODINAMICA & FLUIDODINAMICA DI COLATA</span>
+                <span class="en-text">SLIDE 02 • CASTING THERMODYNAMICS & FLUID DYNAMICS</span>
+            </span>
+        </div>
+        <h2 class="slide-title">
+            <span class="it-text">Regime Fluidodinamico, Turbolenze & Solidificazione Direzionale</span>
+            <span class="en-text">Fluid Dynamics, Turbulence Control & Directional Solidification</span>
+        </h2>
+
+        <p class="it-text"><strong>Solidificazione Direzionale (Prevenzione Porosità):</strong> Durante la fase di raffreddamento, il metallo subisce un ritiro volumetrico di solidificazione. Per evitare porosità interne (<i>shrinkage porosity</i>), la solidificazione deve procedere direzionalmente dalle sezioni più sottili del manufatto verso i canali di colata più spessi, ed infine verso la nutrice (serbatoio riserva), che deve fungere da serbatoio fluido e raffreddarsi per ultima.</p>
+        <p class="en-text"><strong>Directional Solidification (Porosity Prevention):</strong> As molten metal cools, it undergoes volumetric solidification shrinkage. Solidification must proceed directionally from thin prosthetic areas to thick sprues, and finally to the sprue reservoir, which must cool last to feed liquid metal.</p>
+        
+        <p class="it-text" style="margin-top:0.8rem;"><strong>Regime di Flusso Laminare vs Turbolento:</strong> Cambiamenti bruschi di direzione a 90° o strozzature nel canale di colata causano regime turbolento (Numero di Reynolds elevato), provocando l'inglobamento di sacche d'aria e l'erosione meccanica delle pareti del rivestimento. Tutti i canali devono presentare raccordi svasati a 45°–60°.</p>
+        <p class="en-text"><strong>Laminar vs Turbulent Flow:</strong> Sharp 90° bends cause high Reynolds turbulence, air entrapment, and mold erosion. All sprue junctions must feature smooth 45°–60° flares.</p>
+
+        <div class="formula-box">
+            <span class="it-text">Temperatura di Colata = Temp. Liquidus della Lega + (50°C – 100°C di Surriscaldamento)</span>
+            <span class="en-text">Casting Temperature = Alloy Liquidus Temp + (50°C – 100°C Overheating)</span>
+        </div>
+
+        <div class="comparison-grid">
+            <div class="box-old">
+                <div class="box-title">
+                    <span class="it-text">✕ Errore di Raffreddamento Rapido</span>
+                    <span class="en-text">✕ Rapid Cooling Error</span>
+                </div>
+                <p class="it-text">Raffreddare il cilindro immersendolo subito in acqua fredda per velocizzare il lavoro. Genera shock termico, distorsione della fusione e cricche interne.</p>
+                <p class="en-text">Quenching hot rings immediately in water causes thermal shock, severe distortion, and internal cracking.</p>
+            </div>
+            <div class="box-ebm">
+                <div class="box-title">
+                    <span class="it-text">✓ Raffreddamento Controllato a Banco</span>
+                    <span class="en-text">✓ Controlled Bench Cooling</span>
+                </div>
+                <p class="it-text">Lasciare raffreddare il cilindro a temperatura ambiente fino a completo viraggio di colore del metallo prima della smuffolatura, per stabilizzare le fasi cristalline.</p>
+                <p class="en-text">Allow the ring to bench-cool to room temperature to release internal stress and achieve stable metallurgy.</p>
+            </div>
+        </div>
+
+        <div class="quiz-container">
+            <div class="quiz-title">
+                <span class="it-text">Verification Gate 2 (V Anno - Termodinamica di Colata)</span>
+                <span class="en-text">Verification Gate 2 (5th Year - Casting Thermodynamics)</span>
+            </div>
+            <p class="it-text">Per quale motivo biomeccanico la nutrice (serbatoio metallico) deve solidificare per ULTIMA nel cilindro?</p>
+            <p class="en-text">Why must the sprue reservoir solidify LAST in the ring?</p>
+            <label class="quiz-option"><input type="radio" name="q2" value="a"> <span>A) Per alimentare con metallo fuso il manufatto durante il ritiro volumetrico, evitando porosità. / To feed liquid metal during shrinkage.</span></label>
+            <label class="quiz-option"><input type="radio" name="q2" value="b"> <span>B) Per facilitare il distacco del perno con il dischetto abrasivo. / To facilitate sprue cutting.</span></label>
+            <button onclick="checkQuiz('q2', 'a', 'feedback-2')" class="btn-check">
+                <span class="it-text">Verifica Risposta</span><span class="en-text">Check Answer</span>
+            </button>
+            <div id="feedback-2" class="feedback-box"></div>
+        </div>
+    </div>
+
+    <!-- SLIDE / MODULO 3 -->
+    <div class="slide-card" id="modulo-3">
+        <div class="slide-header">
+            <span class="slide-tag">
+                <span class="it-text">SLIDE 03 • SCIENZA DEI MATERIALI REFRATTARI (ISO 15912)</span>
+                <span class="en-text">SLIDE 03 • REFRACTORY INVESTMENT SCIENCE (ISO 15912)</span>
+            </span>
+        </div>
+        <h2 class="slide-title">
+            <span class="it-text">Classificazione dei Rivestimenti & Transizioni Polimorfiche della Silice</span>
+            <span class="en-text">Investment Classification & Polymorphic Silica Transformations</span>
+        </h2>
+
+        <p class="it-text">I rivestimenti per fusione odontoiatrica (regolati dalla norma <strong>ISO 15912</strong>) sono formulati per compensare esattamente la contrazione termica di solidificazione della lega (1.4% per l'oro, 2.3%–2.6% per Cr-Co e Ni-Cr). La massa refrattaria è composta da una carica di Silice (SiO<sub>2</sub>) dispersa in un legante chimico.</p>
+        <p class="en-text">Dental investments (ISO 15912) compensate for alloy casting shrinkage via setting and thermal expansion. The refractory mass consists of silica fillers (SiO<sub>2</sub>) in a chemical binder.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <span class="it-text">Tipo di Legante Chimico</span>
+                        <span class="en-text">Chemical Binder Type</span>
+                    </th>
+                    <th>
+                        <span class="it-text">Resistenza Termica Max</span>
+                        <span class="en-text">Max Thermal Limit</span>
+                    </th>
+                    <th>
+                        <span class="it-text">Leghe Metalliche Compatibili</span>
+                        <span class="en-text">Compatible Alloys</span>
+                    </th>
+                    <th>
+                        <span class="it-text">Meccanismo di Espansione</span>
+                        <span class="en-text">Expansion Mechanism</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Gesso / Gypsum (CalSulfate)</strong></td>
+                    <td>≤ 700°C</td>
+                    <td>Leghe auree nobili (Tipo 1-3) / Gold Alloys.</td>
+                    <td>Espansione igroscopica + termica del quarzo.</td>
+                </tr>
+                <tr>
+                    <td><strong>Fosfatico / Phosphate-bonded</strong></td>
+                    <td>≤ 1100°C – 1200°C</td>
+                    <td>Leghe vili (Cr-Co, Ni-Cr), PFM, Press ceram.</td>
+                    <td>Espansione di presa + Sol di Silice concentrato.</td>
+                </tr>
+                <tr>
+                    <td><strong>Silicato d'Etile / Ethyl Silicate</strong></td>
+                    <td>&gt; 1300°C</td>
+                    <td>Scheletrati Cr-Co e Titanio / Partial frameworks & Ti.</td>
+                    <td>Espansione termica pura a rampa lenta.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top:1.25rem; color:#0f172a;">
+            <span class="it-text">Transizioni Cristallografiche della Silice (SiO<sub>2</sub>):</span>
+            <span class="en-text">Polymorphic Silica Transitions (SiO<sub>2</sub>):</span>
+        </h3>
+        <p class="it-text">• <strong>Cristobalite (α → β):</strong> Avviene tra <strong>200°C e 270°C</strong> con un forte ed immediato incremento volumetrico del reticolo cristallino cubico.<br>
+        • <strong>Quarzo (α → β):</strong> Avviene a <strong>573°C</strong>, garantendo un'espansione lineare progressiva e stabile fino alla temperatura finale di colata.</p>
+        <p class="en-text">• <strong>Cristobalite (α → β):</strong> Shift occurs at 200°C–270°C producing rapid volume increase.<br>
+        • <strong>Quartz (α → β):</strong> Shift occurs at 573°C providing steady linear expansion.</p>
+
+        <div class="formula-box">
+            <span class="it-text">Espansione Totale = Espansione di Presa (Settings) + Espansione Termica (Preriscaldo)</span>
+            <span class="en-text">Total Expansion = Setting Expansion + Thermal Expansion</span>
+        </div>
+
+        <div class="quiz-container">
+            <div class="quiz-title">
+                <span class="it-text">Verification Gate 3 (V Anno - Rivestimenti Refrattari)</span>
+                <span class="en-text">Verification Gate 3 (5th Year - Investments)</span>
+            </div>
+            <p class="it-text">Come si calibra l'espansione totale di un rivestimento a legante fosfatico per adattarlo ad una lega Cr-Co ad elevata contrazione?</p>
+            <p class="en-text">How is total expansion calibrated for high-shrinkage Cr-Co alloys?</p>
+            <label class="quiz-option"><input type="radio" name="q3" value="a"> <span>A) Aumentando la concentrazione del liquido speciale a base di Sol di Silice. / By increasing silica sol liquid concentration.</span></label>
+            <label class="quiz-option"><input type="radio" name="q3" value="b"> <span>B) Aumentando il tempo di miscelazione manuale. / By increasing manual spatulation time.</span></label>
+            <button onclick="checkQuiz('q3', 'a', 'feedback-3')" class="btn-check">
+                <span class="it-text">Verifica Risposta</span><span class="en-text">Check Answer</span>
+            </button>
+            <div id="feedback-3" class="feedback-box"></div>
+        </div>
+    </div>
+
+    <!-- SLIDE / MODULO 4 -->
+    <div class="slide-card" id="modulo-4">
+        <div class="slide-header">
+            <span class="slide-tag">
+                <span class="it-text">SLIDE 04 • GEOMETRIA DEI CANALI & MODELLAZIONE</span>
+                <span class="en-text">SLIDE 04 • SPRUE GEOMETRY & PATTERN SETUP</span>
+            </span>
+        </div>
+        <h2 class="slide-title">
+            <span class="it-text">Progettazione dei Canali di Iniezione & Posizionamento del Centro Termico</span>
+            <span class="en-text">Sprue Architecture & Thermal Center Management</span>
+        </h2>
+
+        <p class="it-text"><strong>Regola del Centro Termico:</strong> Il centro geometrico del cilindro trattiene il calore più a lungo e costituisce il <strong>Centro Termico</strong>. La nutrice (serbatoio metallico di riserva) dev'essere collocata esattamente in questa zona calda. Al contrario, la struttura protesica fusa deve trovarsi nella <strong>zona fredda periferica</strong> (a 5–6 mm dalla parete esterna del cilindro) per garantire la solidificazione precoce.</p>
+        <p class="en-text"><strong>Thermal Center Rule:</strong> The ring center retains heat longest (Thermal Center). The reservoir must occupy this central hot zone, while the wax pattern sits in the cooler peripheral zone (5–6 mm from the ring wall).</p>
+        
+        <p class="it-text" style="margin-top:0.8rem;"><strong>Dimensionamento dei Perni:</strong> Il perno di iniezione principale deve avere un diametro pari o superiore allo spessore massimo della struttura (solitamente ⌀ = 3.0–4.0 mm per elementi singoli, ⌀ = 4.0–5.0 mm per la barra di colata delle travate).</p>
+        <p class="en-text"><strong>Sprue Sizing:</strong> Main sprue diameter must match or exceed thickest pattern section (⌀ = 3.0–5.0 mm).</p>
+
+        <div class="diagram-box">
+Architettura del Cilindro di Fusione / Casting Ring Architecture:
+
+   +-------------------------------------------------------+
+   |            PARETE ESTERNA DEL CILINDRO METALLICO      |
+   |                                                       |
+   |    [ ZONA FREDDA PERIFERICA: Spessore 5 - 6 mm ]      |
+   |         |                                             |
+   |         v                                             |
+   |   [ Corona Modellata / Wax Pattern ]                  |
+   |         |                                             |
+   |         +---&gt; [ Perno di Iniezione 45° (Ø 3.5 mm) ]    |
+   |                     |                                 |
+   |                     v                                 |
+   |       ( NUTRICE / SERBATOIO DI RISERVA FLUIDA )       |
+   |            &lt;=== CENTRO TERMICO CALDO ===&gt;             |
+   |                     |                                 |
+   |                     +---&gt; [ Cono di Colata ]          |
+   |                                                       |
+   +-------------------------------------------------------+
+        </div>
+
+        <div class="quiz-container">
+            <div

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Presentation - Check-List Protesi Rimovibile</title>
+    <style>
+        :root {
+            --primary: #065f46;
+            --secondary: #10b981;
+            --bg: #064e3b;
+            --card-bg: #022c22;
+            --text: #f0fdf4;
+            --text-muted: #a7f3d0;
+            --accent: #34d399;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 900px;
+            height: 550px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #134e4a;
+            position: relative;
+        }
+        .slide { display: none; flex-direction: column; height: 100%; }
+        .slide.active { display: flex; }
+        .slide-header { border-bottom: 2px solid var(--secondary); padding-bottom: 15px; margin-bottom: 25px; }
+        .badge { background: var(--secondary); color: #022c22; padding: 4px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; }
+        h2 { font-size: 2rem; color: var(--accent); margin-top: 10px; }
+        .slide-body { flex: 1; font-size: 1.25rem; line-height: 1.7; color: #ecfdf5; }
+        .highlight-box { background: rgba(52, 211, 153, 0.1); border-left: 4px solid var(--accent); padding: 15px; margin-top: 20px; border-radius: 0 8px 8px 0; font-family: monospace; font-size: 1.3rem; }
+        .controls { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #134e4a; padding-top: 20px; }
+        button { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: var(--secondary); color: #022c22; }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+        .page-num { font-size: 1rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="slide-header">
+                <span class="badge">Protesi Rimovibile</span>
+                <h2>Protocollo Clinico & Didattico</h2>
+            </div>
+            <div class="slide-body">
+                <p><strong>Check-List Operativa per Totale e Scheletrato</strong></p>
+                <br>
+                <p>Guida passo-passo per la gestione dei valli di cera, determinazione della DVO e montaggio bilanciato dei denti.</p>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="badge">Fase 1 - Poltrona</span>
+                <h2>Valli di Cera & DVO</h2>
+            </div>
+            <div class="slide-body">
+                <ul>
+                    <li><strong>Controllo Vallo Superiore:</strong> Verifica del supporto labiale, linea bipupillare e parallelismo col Piano di Camper.</li>
+                    <li><strong>Registrazione DVO:</strong> Definizione della Dimensione Verticale di Occlusione con prove fonetiche ed estetiche.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="badge">Fase 1 - Poltrona</span>
+                <h2>Registrazione con Arco Gotico</h2>
+            </div>
+            <div class="slide-body">
+                <ul>
+                    <li><strong>Tracciatore intra/extraorale:</strong> Utilizzo dell'Arco Gotico di Gysi per la registrazione oggettiva della Relazione Centrica.</li>
+                    <li><strong>Svincolo Muscolare:</strong> Eliminazione di riflessi o deviazioni mandibolari condizionate dalla mancanza di denti.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="badge">Fase 2 - Laboratorio</span>
+                <h2>Montaggio & Formula di Hanau</h2>
+            </div>
+            <div class="slide-body">
+                <p>Trasferimento dei modelli in articolatore semi-individuale o a valori medi.</p>
+                <br>
+                <p><strong>Verifica Parametri Condilari:</strong> Calcolo e regolazione dell'Angolo di Bennett (L):</p>
+                <div class="highlight-box">Formula di Hanau: L = (H / 8) + 12</div>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="badge">Fase 3 - Banco di Lavoro</span>
+                <h2>Schema Occlusale Bilanciato Bilaterale</h2>
+            </div>
+            <div class="slide-body">
+                <ul>
+                    <li><strong>Bilanciata Bilaterale:</strong> Obbligatoria per garantire contatti simultanei su lato lavorante e bilanciante in ogni escursione.</li>
+                    <li><strong>Montaggio Denti Posteriori:</strong> Rigorosamente posizionati al centro della cresta edentula per evitare scalzamento o ribaltamento sotto carico.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Controlli -->
+        <div class="controls">
+            <button id="prevBtn" onclick="changeSlide(-1)" disabled>Indietro</button>
+            <span class="page-num" id="pageNum">Slide 1 di 5</span>
+            <button id="nextBtn" onclick="changeSlide(1)">Avanti</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const pageNum = document.getElementById('pageNum');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+            slides[currentSlide].classList.add('active');
+
+            pageNum.textContent = `Slide ${currentSlide + 1} di ${slides.length}`;
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+        }
+    </script>
+</body>
+</html>

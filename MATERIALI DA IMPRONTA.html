@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAB 4.0 - IMPRESSION MATERIALS MASTERCLASS</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0f172a; color: #f8fafc; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; padding: 15px; line-height: 1.5; }
+    header { background: #090d16; border-bottom: 3px solid #10b981; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+    h1 { color: #10b981; font-size: 18px; letter-spacing: 0.5px; }
+    p.sub { color: #94a3b8; font-size: 12px; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 18px; margin-bottom: 20px; display: block; }
+    .badge { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4); font-weight: bold; font-size: 11px; padding: 3px 10px; border-radius: 15px; display: inline-block; margin-bottom: 10px; text-transform: uppercase; }
+    .ebm { float: right; font-family: monospace; font-size: 10px; color: #94a3b8; }
+    h2 { color: #fff; font-size: 17px; margin-bottom: 10px; border-bottom: 1px solid #334155; padding-bottom: 5px; }
+    p, li { color: #cbd5e1; font-size: 13px; }
+    ul, ol { padding-left: 20px; margin: 8px 0; }
+    .box { background: #090d16; border-left: 3px solid #10b981; padding: 12px; border-radius: 5px; margin: 12px 0; }
+    .btitle { color: #10b981; font-weight: bold; font-size: 12px; margin-bottom: 5px; }
+    .quiz { background: #090d16; border: 1px solid #334155; border-radius: 8px; padding: 12px; margin-top: 15px; }
+    .qtitle { color: #f59e0b; font-size: 11px; font-weight: bold; margin-bottom: 5px; }
+    .qq { color: #f1f5f9; font-weight: bold; font-size: 13px; margin-bottom: 8px; }
+    .opt-btn { width: 100%; text-align: left; background: #1e293b; border: 1px solid #334155; padding: 8px 10px; border-radius: 5px; margin-bottom: 6px; font-size: 12px; color: #e2e8f0; cursor: pointer; transition: 0.2s; }
+    .opt-btn:hover { border-color: #10b981; background: #334155; }
+    .fb { display: none; padding: 8px 10px; margin-top: 6px; font-size: 12px; border-radius: 5px; font-weight: bold; }
+    .fb-ok { background: rgba(16,185,129,0.15); border: 1px solid #10b981; color: #34d399; }
+    .fb-no { background: rgba(239,68,68,0.15); border: 1px solid #ef4444; color: #f87171; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>LAB 4.0 // IMPRESSION MATERIALS MASTERCLASS</h1>
+    <p class="sub">Corso Serale IDA • Hydrocolloids, Elastomers & Technical Protocols</p>
+  </header>
+
+  <!-- SLIDE 1 DI 6 -->
+  <article class="card">
+    <span class="ebm">EBM: Donovan & Chee (2004); Cervino (2019)</span>
+    <span class="badge">SLIDE 1 DI 6 // Alginati</span>
+    <h2>1. Alginati: Chimica della Gelificazione, Sineresi ed Imbibizione</h2>
+    <p>L'Alginato è un idrocolloide irreversibile impiegato per impronte preliminari, modelli di studio ed antagonisti. Formato da alginato di potassio/sodio e solfato di calcio diidrato che generano un gel insolubile di alginato di calcio.</p>
+    <div class="box">
+      <div class="btitle">Cinematica di Reticolazione (W/P Ratio):</div>
+      <ul>
+        <li><strong>Rapporto W/P:</strong> Alterare il dosaggio compromette la resistenza meccanica. L'acqua calda accelera la presa, la fredda la ralententa.</li>
+        <li><strong>Sineresi:</strong> Rilascio spontaneo d'acqua all'aria con contrazione volumetrica irrecuperabile dell'impronta.</li>
+        <li><strong>Imbibizione:</strong> Assorbimento d'acqua se l'impronta è immersa prolungatamente, con conseguente gonfiamento del gel.</li>
+        <li><strong>EBM Colata:</strong> Eseguire la colata del modello in gesso entro 15-30 minuti dal prelievo.</li>
+      </ul>
+    </div>
+    <div class="quiz">
+      <div class="qtitle">🧪 Quesito 1 [Bilingual]</div>
+      <div class="qq">[IT] Cos'è la sineresi in un'impronta in alginato?<br><span style="color:#94a3b8; font-weight:normal;">[EN] What is syneresis in an alginate impression?</span></div>
+      <button class="opt-btn" onclick="check('f1', true)">A) L'espulsione spontanea d'acqua dal gel con ritiro volumetrico. / Spontaneous water loss causing impression shrinkage.</button>
+      <button class="opt-btn" onclick="check('f1', false)">B) L'assorbimento d'acqua con espansione del modello gessoso. / Water absorption causing expansion.</button>
+      <div id="f1" class="fb"></div>
+    </div>
+  </article>
+
+  <!-- SLIDE 2 DI 6 -->
+  <article class="card">
+    <span class="ebm">EBM: Lawson (2015); Rutkunas (2012)</span>
+    <span class="badge">SLIDE 2 DI 6 // Elastomeri</span>
+    <h2>2. Siliconi per Addizione (PVS) vs Condensazione (C-Silicones)</h2>
+    <p>Per la protesi fissa di alta precisione si impiegano gli elastomeri sintetici, caratterizzati da elevato recupero elastico e stabilità dimensionale nel tempo.</p>
+    <div class="box">
+      <div class="btitle">Confronto Tecnico Elastomeri:</div>
+      <ul>
+        <li><strong>PVS (Addizione):</strong> Reazione di addizione senza liberazione di sottoprodotti volatili. Massima stabilità (colata rinviabile a 7-14 giorni).</li>
+        <li><strong>C-Silicones (Condensazione):</strong> Liberano alcol etilico come sottoprodotto volatile, generando un progressivo ritiro dimensionale. Colata entro 30-60 min.</li>
+      </ul>
+    </div>
+    <div class="quiz">
+      <div class="qtitle">🧪 Quesito 2 [Bilingual]</div>
+      <div class="qq">[IT] Perché i Polyvinylsiloxane (PVS) offrono una stabilità dimensionale superiore?<br><span style="color:#94a3b8; font-weight:normal;">[EN] Why do Polyvinylsiloxanes (PVS) provide superior dimensional stability?</span></div>
+      <button class="opt-btn" onclick="check('f2', false)">A) Presa rapida in 10 secondi. / Setting time in 10 seconds.</button>
+      <button class="opt-btn" onclick="check('f2', true)">B) La reazione di addizione non libera sottoprodotti volatili come l'alcol etilico. / Addition reaction frees no volatile byproducts.</button>
+      <div id="f2" class="fb"></div>
+    </div>
+  </article>
+
+  <!-- SLIDE 3 DI 6 -->
+  <article class="card">
+    <span class="ebm">EBM: Christensen (2007); Franco (2011)</span>
+    <span class="badge">SLIDE 3 DI 6 // Tecniche d'Impronta</span>
+    <h2>3. Tecniche Putty/Wash (2 Fasi - 1/2 Tempi) vs Monofase</h2>
+    <p>La registrazione dei margini sottogengivali richiede la combinazione di materiale ad alta viscosità (Putty) per il supporto ed a bassa viscosità (Light Body) per lo scorrimento nel solco.</p>
+    <div class="box">
+      <div class="btitle">Protocolli di Applicazione Clinica:</div>
+      <ul>
+        <li><strong>Putty/Wash 2 Tempi:</strong> Prima indurisce il Putty nel cucchiaio, poi si scarica e si inserisce il Light Body.</li>
+        <li><strong>Putty/Wash 1 Tempo:</strong> Estrusione contemporanea del Light Body sui pilastri e del Putty nel portaimpronta.</li>
+        <li><strong>Monofase:</strong> Utilizzo di un unico materiale a viscosità media (Medium Body) sia sui denti sia nel portaimpronta.</li>
+      </ul>
+    </div>
+    <div class="quiz">
+      <div class="qtitle">🧪 Quesito 3 [Bilingual]</div>
+      <div class="qq">[IT] Qual è la funzione del materiale fluido (Light Body)?<br><span style="color:#94a3b8; font-weight:normal;">[EN] What is the function of light-body material?</span></div>
+      <button class="opt-btn" onclick="check('f3', true)">A) Penetrare nel solco e registrare i dettagli della linea di finitura. / Flow into sulcus and record finishing line details.</button>
+      <button class="opt-btn" onclick="check('f3', false)">B) Fornire rigidità al portaimpronta. / Provide tray rigidity.</button>
+      <div id="f3" class="fb"></div>
+    </div>
+  </article>
+
+  <!-- SLIDE 4 DI 6 -->
+  <article class="card">
+    <span class="ebm">EBM: ADA & ISO 21563; Sofou (2002)</span>
+    <span class="badge" style="background:rgba(245,158,11,0.15); color:#f59e0b; border-color:rgba(245,158,11,0.4);">SLIDE 4 DI 6 // Decontaminazione & Disinfezione</span>
+    <h2>4. Protocolli Sanitarizzanti e Disinfezione EBM (ISO 21563)</h2>
+    <p>Le impronte dentali sono vettori di infezioni incrociate. Devono essere decontaminate subito dopo l'estrazione dal cavo orale senza alterarne la stabilità dimensionale.</p>
+    <div class="box" style="border-left-color: #f59e0b;">
+      <div class="btitle" style="color: #f59e0b;">Fasi del Protocollo di Sanificazione:</div>
+      <ol>
+        <li><strong>Lavaggio Bioburden:</strong> Sciacquo in acqua corrente fredda per 15-20 secondi per rimuovere sangue e saliva.</li>
+        <li><strong>Disinfezione Chimica:</strong> Nebulizzazione o immersione (10 min) con Ipoclorito di sodio allo 0.5% o Sali di ammonio quaternario.</li>
+        <li><strong>Conservazione Idonea:</strong> Alginati in sacchetto chiuso con garza umida (100% umidità). Polieteri strictly all'asciutto.</li>
+      </ol>
+    </div>
+    <div class="quiz">
+      <div class="qtitle">🧪 Quesito 4 [Bilingual]</div>
+      <div class="qq">[IT] Qual è il metodo corretto per la disinfezione dell'alginato senza causare distorsioni?<br><span style="color:#94a3b8; font-weight:normal;">[EN] What is the correct method to disinfect alginate without distortion?</span></div>
+      <button class="opt-btn" onclick="check('f4', false)">A) Immersione in alcol al 90% per 2 ore. / Soak in 90% alcohol for 2 hours.</button>
+      <button class="opt-btn" onclick="check('f4', true)">B) Nebulizzare spray disinfettante specifico per idrocolloidi e custodire in busta sigillata per 10 min. / Spray dedicated disinfectant and store in sealed plastic bag for 10 min.</button>
+      <div id="f4" class="fb"></div>
+    </div>
+  </article>
+
+  <!-- SLIDE 5 DI 6 -->
+  <article class="card">
+    <span class="ebm">EBM: Rutkunas (2012); Impregum Matrix</span>
+    <span class="badge">SLIDE 5 DI 6 // Polietere & Hydro-System</span>
+    <h2>5. Proprietà del Polietere e Gestione dell'Umidità</h2>
+    <p>Il Polietere (Impregum) è un elastomero ad idrofilia nativa con elevatissima rigidità finale e fedeltà nei dettagli sottogengivali.</p>
+    <div class="box">
+      <div class="btitle">Caratteristiche Chimico-Fisiche:</div>
+      <ul>
+        <li><strong>Bagnabilità Clinica:</strong> Angolo di contatto ridotto nativo senza bisogno di tensioattivi aggiunti.</li>
+        <li><strong>Sensibilità all'Acqua:</strong> A causa dell'idrofilia, se lasciato a contatto prolungato con liquidi subisce rigonfiamento. Conservare all'asciutto.</li>
+      </ul>
+    </div>
+    <div class="quiz">
+      <div class="qtitle">🧪 Quesito 5 [Bilingual]</div>
+      <div class="qq">[IT] Come vanno conservate le impronte in Polietere prima della colata?<br><span style="color:#94a3b8; font-weight:normal;">[EN] How should polyether impressions be stored before pouring?</span></div>
+      <button class="opt-btn" onclick="check('f5', true)">A) Rigorosamente all'asciutto per evitare rigonfiamento idrofilo. / Strictly dry to avoid hydrophilic swelling.</button>
+      <button class="opt-btn" onclick="check('f5', false)">B) Immerse in una vaschetta d'acqua tiepida. / Submerged inside a warm water bath.</button>
+      <div id="f5" class="fb"></div>
+    </div>
+  </article>
+
+  <!-- SLIDE 6 DI 6 -->
+  <article class="card">
+    <span class="ebm">EBM: Fault Matrix & Literature</span>
+    <span class="badge">SLIDE 6 DI 6 // Troubleshooting & Bibliografia</span>
+    <h2>6. Risoluzione Errori di Banco e Bibliografia Scientifica</h2>
+    <div class="box" style="border-left-color: #ef4444;">
+      <div class="btitle" style="color: #ef4444;">Matrice Diagnostica dei Difetti:</div>
+      <ul>
+        <li><strong>Bolle sul margine:</strong> Saliva nel solco o puntale sollevato. <em>Soluzione:</em> asciugare il solco e mantenere la punta siringa annegata nel fluido.</li>
+        <li><strong>Distacco dal portaimpronta:</strong> Mancata applicazione dell'adesivo. <em>Soluzione:</em> applicare l'adesivo specifico (PVS/Alginato) e far asciugare 5 minuti.</li>
+      </ul>
+    </div>
+    <div class="box" style="border-left-color: #f59e0b;">
+      <div class="btitle" style="color: #f59e0b;">📚 Bibliografia EBM/EBD:</div>
+      <ul style="font-size:11px; list-style:none; padding-left:0;">
+        <li>• Cervino et al. (2019) Int J Dent | Christensen (2007) J Am Dent Assoc</li>
+        <li>• Donovan & Chee (2004) Dent Clin N Am | Lawson et al. (2015) J Prosthet Dent</li>
+        <li>• Franco et al. (2011) Braz Dent J | Sofou et al. (2002) Int J Prosthodont</li>
+      </ul>
+    </div>
+    <div class="quiz">
+      <div class="qtitle">🧪 Quesito 6 [Bilingual]</div>
+      <div class="qq">[IT] Come si prevengono le bolle d'aria nell'estrusione del fluido?<br><span style="color:#94a3b8; font-weight:normal;">[EN] How to prevent air bubbles when injecting light-body?</span></div>
+      <button class="opt-btn" onclick="check('f6', true)">A) Mantenendo il puntale siringa costantemente immerso nel materiale durante l'estrusione. / Keep tip continuously submerged inside injected mass.</button>
+      <button class="opt-btn" onclick="check('f6', false)">B) Soffiando aria con la siringa aria-acqua del riunito. / Blow air with air syringe.</button>
+      <div id="f6" class="fb"></div>
+    </div>
+  </article>
+
+  <script>
+    function check(id, isCorrect) {
+      var box = document.getElementById(id);
+      if (!box) return;
+      box.style.display = 'block';
+      if (isCorrect) {
+        box.className = 'fb fb-ok';
+        box.innerHTML = '✔ ESATTO / CORRECT!';
+      } else {
+        box.className = 'fb fb-no';
+        box.innerHTML = '✖ ERRATO / INCORRECT! Riprova.';
+      }
+    }
+  </script>
+
+</body>
+</html>

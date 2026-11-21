@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Presentation - Check-List Protesi Fissa</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .slide-container {
+            width: 100%;
+            max-width: 900px;
+            height: 550px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #334155;
+            position: relative;
+        }
+        .slide { display: none; flex-direction: column; height: 100%; }
+        .slide.active { display: flex; }
+        .slide-header { border-bottom: 2px solid var(--secondary); padding-bottom: 15px; margin-bottom: 25px; }
+        .badge { background: var(--secondary); color: white; padding: 4px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; }
+        h2 { font-size: 2rem; color: var(--accent); margin-top: 10px; }
+        .slide-body { flex: 1; font-size: 1.25rem; line-height: 1.7; color: #e2e8f0; }
+        .highlight-box { background: rgba(56, 189, 248, 0.1); border-left: 4px solid var(--accent); padding: 15px; margin-top: 20px; border-radius: 0 8px 8px 0; font-family: monospace; font-size: 1.3rem; }
+        .controls { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #334155; padding-top: 20px; }
+        button { background: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: var(--secondary); }
+        button:disabled { opacity: 0.3; cursor: not-allowed; }
+        .page-num { font-size: 1rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="slide-header">
+                <span class="badge">Protesi Fissa / Implantoprotesi</span>
+                <h2>Protocollo Clinico & Didattico</h2>
+            </div>
+            <div class="slide-body">
+                <p><strong>Check-List Operativa per lo Studio e il Laboratorio</strong></p>
+                <br>
+                <p>Guida passo-passo dal rilevamento clinico in poltrona alla realizzazione occlusale al banco odontotecnico.</p>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="badge">Fase 1 - Poltrona</span>
+                <h2>Deprogrammazione & Relazione Centrica</h2>
+            </div>
+            <div class="slide-body">
+                <ul>
+                    <li><strong>Jig di Lucia / Leaf Gauge:</strong> Azzeramento dell'engramma di MIC per registrare la Relazione Centrica (RC) pura.</li>
+                    <li><strong>Arco Gotico di Gysi:</strong> Registrazione grafica del vertice per confermare la posizione condilare corretta nei casi complessi.</li>
+                    <li><strong>Registro Interocclusale:</strong> Rilevato in RC con materiale rigido privo di interferenze.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="badge">Fase 1 - Poltrona</span>
+                <h2>Arco Facciale & Guida Anteriore</h2>
+            </div>
+            <div class="slide-body">
+                <ul>
+                    <li><strong>Trasferimento Spaziale:</strong> Registrazione dell'arco facciale per orientare il mascellare rispetto all'Asse Cerniera Terminale.</li>
+                    <li><strong>Valutazione Guida Anteriore:</strong> Misurazione di Overbite/Overjet e verifica dello stato parodontale dei canini pilastro.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="badge">Fase 2 - Laboratorio</span>
+                <h2>Montaggio & Formula di Hanau</h2>
+            </div>
+            <div class="slide-body">
+                <p>Modello superiore montato con arco facciale, modello inferiore in RC.</p>
+                <br>
+                <p><strong>Programmazione dell'Articolatore:</strong> Impostazione della Traiettoria Condilare (H) e calcolo dell'Angolo di Bennett (L):</p>
+                <div class="highlight-box">Formula di Hanau: L = (H / 8) + 12</div>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <div class="slide-header">
+                <span class="badge">Fase 3 - Banco di Lavoro</span>
+                <h2>Schemi Occlusali in Protesi Fissa</h2>
+            </div>
+            <div class="slide-body">
+                <ul>
+                    <li><strong>Mutualmente Protetta (D'Amico):</strong> Canino sano, disinclusione totale dei posteriori nei movimenti eccentrici.</li>
+                    <li><strong>Funzione di Gruppo:</strong> Da preferire se il canino è compromesso o parodontalmente ridotto.</li>
+                    <li><strong>Modellazione Occlusale:</strong> Carichi diretti sull'asse lungo del dente e svincoli immediati.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Controlli -->
+        <div class="controls">
+            <button id="prevBtn" onclick="changeSlide(-1)" disabled>Indietro</button>
+            <span class="page-num" id="pageNum">Slide 1 di 5</span>
+            <button id="nextBtn" onclick="changeSlide(1)">Avanti</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const pageNum = document.getElementById('pageNum');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+            slides[currentSlide].classList.add('active');
+
+            pageNum.textContent = `Slide ${currentSlide + 1} di ${slides.length}`;
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+        }
+    </script>
+</body>
+</html>
