@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio Odontotecnico IV Anno - Protocolli EBM & ISO</title>
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-sidebar: #0f172a;
+            --border: #cbd5e1;
+            --border-dark: #334155;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent-ebm: #059669;
+            --accent-ebm-bg: #ecfdf5;
+            --accent-danger: #dc2626;
+            --accent-danger-bg: #fef2f2;
+            --accent-warn: #d97706;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #0f172a;
+            color: white;
+            border-bottom: 4px solid var(--primary);
+            padding: 1.2rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-title {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .logo-icon {
+            background: var(--primary);
+            color: white;
+            font-weight: 800;
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        h1 { font-size: 1.4rem; font-weight: 800; color: #ffffff; letter-spacing: -0.02em; }
+        .subtitle { font-size: 0.85rem; color: #94a3b8; font-weight: 500; }
+
+        .badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .badge {
+            font-size: 0.75rem;
+            padding: 0.35rem 0.7rem;
+            border-radius: 6px;
+            font-family: monospace;
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+        .badge-ebm {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.5);
+            color: #34d399;
+            font-weight: 700;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+            width: 100%;
+            flex-grow: 1;
+            display: grid;
+            grid-template-cols: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .main-container {
+                grid-template-cols: 320px 1fr;
+            }
+        }
+
+        .sidebar {
+            background: #ffffff;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            height: fit-content;
+        }
+
+        .nav-header {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #475569;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding: 0.5rem 0.75rem;
+        }
+
+        .nav-btn {
+            background: #f1f5f9;
+            border: 1.5px solid var(--border);
+            color: #1e293b;
+            padding: 0.9rem 1rem;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            user-select: none;
+        }
+
+        .nav-btn:hover {
+            background-color: #e2e8f0;
+            color: #0f172a;
+            border-color: #94a3b8;
+        }
+
+        .nav-btn.active {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary-hover);
+            box-shadow: 0 3px 6px rgba(2, 132, 199, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block !important;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 0.85rem;
+        }
+
+        .card-title { font-size: 1.4rem; font-weight: 800; color: #0f172a; }
+        .card-tag { font-size: 0.8rem; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-cols: 1fr;
+            gap: 1.25rem;
+            margin: 1.25rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .comparison-grid { grid-template-cols: 1fr 1fr; }
+        }
+
+        .box-old {
+            background: var(--accent-danger-bg);
+            border: 2px solid #fca5a5;
+            border-radius: 12px;
+            padding: 1.1rem;
+        }
+
+        .box-ebm {
+            background: var(--accent-ebm-bg);
+            border: 2px solid #6ee7b7;
+            border-radius: 12px;
+            padding: 1.1rem;
+        }
+
+        .box-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        .box-old .box-title { color: var(--accent-danger); }
+        .box-ebm .box-title { color: var(--accent-ebm); }
+
+        .text-body { font-size: 0.95rem; color: #334155; line-height: 1.65; font-weight: 400; }
+
+        .protocol-steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+            margin: 1.25rem 0;
+        }
+
+        .protocol-step {
+            position: relative;
+            padding-left: 3.2rem;
+            margin-bottom: 1.1rem;
+            font-size: 0.95rem;
+            color: #1e293b;
+        }
+
+        .protocol-step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 34px;
+            height: 34px;
+            background: #f1f5f9;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .table-container { overflow-x: auto; margin: 1.25rem 0; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.88rem; text-align: left; }
+        th { background: #0f172a; color: #ffffff; padding: 0.9rem; border: 1px solid #334155; font-weight: 800; }
+        td { padding: 0.9rem; border: 1px solid var(--border); color: #1e293b; background: #ffffff; font-weight: 500; }
+        tr:nth-child(even) td { background: #f8fafc; }
+
+        .quiz-gate {
+            margin-top: 1.75rem;
+            padding-top: 1.25rem;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .quiz-container {
+            background: #f8fafc;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-top: 0.75rem;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            background: #ffffff;
+            color: #1e293b;
+            font-weight: 600;
+            transition: all 0.15s;
+        }
+
+        .quiz-option:hover { border-color: var(--primary); background: #f0f9ff; }
+
+        .btn-check {
+            margin-top: 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.65rem 1.35rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .btn-check:hover { background: var(--primary-hover); }
+
+        .btn-next-step {
+            margin-top: 1.75rem;
+            background: #0f172a;
+            color: #ffffff;
+            border: none;
+            padding: 0.9rem 1.6rem;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.15s;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+
+        .btn-next-step:hover {
+            background: var(--primary);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .feedback-box {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 0.85rem;
+            padding: 0.85rem 1.1rem;
+            border-radius: 8px;
+            display: none;
+        }
+        .feedback-box.correct { display: block; background: #dcfce7; border: 2px solid #4ade80; color: #166534; }
+        .feedback-box.wrong { display: block; background: #fee2e2; border: 2px solid #f87171; color: #991b1b; }
+
+        .webinar-card {
+            background: #ffffff;
+            border: 2px solid var(--border);
+            border-left: 6px solid var(--primary);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1.1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+
+        .webinar-title { font-weight: 800; font-size: 1rem; color: #0f172a; }
+        .webinar-academy { font-size: 0.78rem; color: var(--accent-warn); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .webinar-desc { font-size: 0.9rem; color: #475569; margin: 0.4rem 0; }
+        .webinar-link { font-size: 0.88rem; color: var(--primary); text-decoration: none; font-weight: 800; display: inline-block; margin-top: 0.3rem; }
+        .webinar-link:hover { text-decoration: underline; color: var(--primary-hover); }
+
+        .ref-item {
+            font-size: 0.88rem;
+            color: #475569;
+            margin-bottom: 0.9rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--primary);
+            line-height: 1.65;
+        }
+        .ref-item strong { color: #0f172a; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-title">
+                <div class="logo-icon">IV</div>
+                <div>
+                    <h1>Laboratorio Odontotecnico - Quarto Anno</h1>
+                    <p class="subtitle">Protocolli Pratici da Banco, Evidence-Based Medicine & Normative ISO</p>
+                </div>
+            </div>
+            <div class="badges">
+                <span class="badge">D.Lgs. 61/2017</span>
+                <span class="badge">ISO 15912 | ISO 22674</span>
+                <span class="badge badge-ebm">✓ Standard EBM Validato</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <div class="nav-header">Esercitazioni 4° Anno</div>
+            <button data-tab="mod-1" class="nav-btn active">
+                <span>1. Modellazione Gnatologica</span> <span>→</span>
+            </button>
+            <button data-tab="mod-2" class="nav-btn">
+                <span>2. Fusione & Refrattari</span> <span>→</span>
+            </button>
+            <button data-tab="mod-3" class="nav-btn">
+                <span>3. Workflow CAD/CAM Base</span> <span>→</span>
+            </button>
+            <button data-tab="mod-4" class="nav-btn">
+                <span>4. Metallo-Ceramica Base</span> <span>→</span>
+            </button>
+            <button data-tab="mod-5" class="nav-btn">
+                <span>5. Protesi Rimovibile Totale</span> <span>→</span>
+            </button>
+            <button data-tab="mod-6" class="nav-btn">
+                <span>6. Video Webinars & Fonti</span> <span>→</span>
+            </button>
+        </aside>
+
+        <main>
+            <!-- MODULO 1: MODELLAZIONE GNATOLOGICA -->
+            <section id="mod-1" class="tab-content active">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-tag">Modulo 01 • Gnatologia Pratica</span>
+                            <h2 class="card-title">Modellazione Occlusale ad Addizione (Tecnica PK Thomas)</h2>
+                        </div>
+                    </div>
+
+                    <div class="comparison-grid">
+                        <div class="box-old">
+                            <div class="box-title">✕ Prassi Empirica Tradizionale</div>
+                            <p class="text-body">"Modellazione a sottrazione (per asportazione) sagomando la cera con spatola calda e piattellamento casuale delle fosse senza punti di contatto verificati."</p>
+                        </div>
+                        <div class="box-ebm">
+                            <div class="box-title">✓ Protocollo EBM & Triangolazione Gnatologica</div>
+                            <p class="text-body">Modellazione ad addizione puntiforme (conetti, creste marginali, creste triangolari). Ricostruzione dei punti di contatto di classe A, B, C e disinclusione in guida canina/incisiva.</p>
+                        </div>
+                    </div>
+
+                    <h3 style="color:#0f172a; font-size:1.05rem; margin-top:1.25rem;">Protocollo Operativo di Banco (Passo-Passo):</h3>
+                    <ol class="protocol-steps">
+                        <li class="protocol-step"><strong>Impostazione della Relazione Centrica (RC):</strong> Verificare l'azzeramento dell'articolatore semi-individuale con registrazione dell'arco di trasferimento e inclinazione condilare impostata.</li>
+                        <li class="protocol-step"><strong>Posizionamento dei Conetti Cuspidali:</strong> Applicare cera dura da modellazione per erigere i conetti delle cuspidi stampo (palatine superiori, vestibolari inferiori) verificando l'altezza occlusale.</li>
+                        <li class="protocol-step"><strong>Modellazione delle Creste Marginali e Triangolari:</strong> Unire i vertici cuspidali per delimitare la tavola occlusale preservando le fosse primarie e secondarie per il passaggio delle cuspidi d'opposizione.</li>
+                        <li class="protocol-step"><strong>Verifica della Disinclusione Dinamica:</strong> Simulare i movimenti di propulsione e lateralità verificando che i contatti tripoidali si sblocchino immediatamente senza interferenze lavoranti o bilancianti.</li>
+                    </ol>
+
+                    <h3 style="color:#0f172a; font-size:1.05rem; margin-top:1.25rem;">Checklist di Controllo Qualità & Troubleshooting:</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Fase Ispezione</th>
+                                    <th>Criterio di Accettazione Visivo/Tattile</th>
+                                    <th>Difetto Riscontrato</th>
+                                    <th>Azione Correttiva al Banco</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Contatti Occlusali</strong></td>
+                                    <td>Punti netti e puntiformi (carta occlusale 8–12 µm) in fossa.</td>
+                                    <td>Superficie appiattita / Precontatto elevato.</td>
+                                    <td>Scavare la cera in eccesso e ricostruire il conetto cuspidale ad addizione.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Bordo Cervicale</strong></td>
+                                    <td>Chiusura continua senza gradini o spazi sul moncone.</td>
+                                    <td>Sollevamento / Distorsione cera sul margine.</td>
+                                    <td>Riempiere il margine cervicale con cera da colletto a basso ritaglio e sigillare.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="quiz-gate">
+                        <h4 style="color:#0f172a; font-size:0.95rem;">Verification Gate 1</h4>
+                        <div class="quiz-container">
+                            <p class="text-body">Nella tecnica di modellazione gnatologica ad addizione (PK Thomas), quale funzione svolgono i contatti occlusali di Classe B?</p>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="a">
+                                <span>A) Stabilizzano la cuspide palatina superiore contro la cuspide vestibolare inferiore, bilanciando le forze trasversali.</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="b">
+                                <span>B) Servono solo a bloccare l'inclinazione del piano di Camper durante la propulsione.</span>
+                            </label>
+                            <button onclick="checkQuiz('q1', 'a', 'feedback-1')" class="btn-check">Verifica Risposta</button>
+                            <div id="feedback-1" class="feedback-box"></div>
+                        </div>
+                    </div>
+
+                    <button data-tab="mod-2" class="btn-next-step">Procedi al Modulo 2: Fusione & Refrattari →</button>
+                </div>
+            </section>
+
+            <!-- MODULO 2: FUSIONE E REFRATTARI -->
+            <section id="mod-2" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-tag">Modulo 02 • Metallurgia & Refrattari</span>
+                            <h2 class="card-title">Fusione a Cera Persa (ISO 15912 & ISO 22674)</h2>
+                        </div>
+                    </div>
+
+                    <div class="comparison-grid">
+                        <div class="box-old">
+                            <div class="box-title">✕ Prassi Empirica Tradizionale</div>
+                            <p class="text-body">"Canali di colata sottili applicati direttamente sui margini sottili e raffreddamento rapido del cilindro sotto l'acqua corrente."</p>
+                        </div>
+                        <div class="box-ebm">
+                            <div class="box-title">✓ Protocollo EBM & Solidificazione Direzionale</div>
+                            <p class="text-body">Canali di diametro adeguato (3–4 mm), nutrice collocata nel centro termico del cilindro e raffreddamento lento a temperatura ambiente per prevenire shrinkage porosity e tensioni residue.</p>
+                        </div>
+                    </div>
+
+                    <h3 style="color:#0f172a; font-size:1.05rem; margin-top:1.25rem;">Parametri Tecnici & Dosaggio da Banco:</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parametro Operativo</th>
+                                    <th>Lega Cr-Co / Ni-Cr (ISO 22674 Tipo 4-5)</th>
+                                    <th>Rivestimento Fosfatico (ISO 15912)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Rapporto Polvere / Liquido</strong></td>
+                                    <td>N.A.</td>
+                                    <td>100g polvere / 22-24ml liquido (concentrazione sol di silice: 75-80%)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Miscelazione Sottovuoto</strong></td>
+                                    <td>N.A.</td>
+                                    <td>Spatolatura manuale 15s + Sottovuoto a -0.8 bar per 60s</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Temperatura Preriscaldo Forno</strong></td>
+                                    <td>N.A.</td>
+                                    <td>Stazionamento a 900°C–950°C per almeno 45-60 min</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gap Marginale EBM target</strong></td>
+                                    <td>≤ 50 – 120 µm (McLean & von Fraunhofer)</td>
+                                    <td>Compensazione ritiro metallo (2.1%–2.4%) via espansione termica Silica</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="quiz-gate">
+                        <h4 style="color:#0f172a; font-size:0.95rem;">Verification Gate 2</h4>
+                        <div class="quiz-container">
+                            <p class="text-body">A quale temperatura avviene la transizione polimorfa rapida della Cristobalite (α → β) nel rivestimento refrattario?</p>
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="a">
+                                <span>A) Tra ~200°C e 270°C, generando una rapida espansione termica del reticolo.</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="b">
+                                <span>B) A 1050°C contemporaneamente alla fusione della lega metallica.</span>
+                            </label>
+                            <button onclick="checkQuiz('q2', 'a', 'feedback-2')" class="btn-check">Verifica Risposta</button>
+                            <div id="feedback-2" class="feedback-box"></div>
+                        </div>
+                    </div>
+
+                    <button data-tab="mod-3" class="btn-next-step">Procedi al Modulo 3: Workflow CAD/CAM Base →</button>
+                </div>
+            </section>
+
+            <!-- MODULO 3: CAD/CAM BASE -->
+            <section id="mod-3" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-tag">Modulo 03 • Odontotecnica Digitale</span>
+                            <h2 class="card-title">Workflow CAD/CAM Base: Scansione & Design Elemento Singolo</h2>
+                        </div>
+                    </div>
+
+                    <div class="text-body">
+                        <p>Il passaggio dalla manualità al digitale richiede l'impostazione rigorosa dei parametri di spaziatura per il cemento e la gestione degli spessori minimi del metallo fresato o stampato in 3D.</p>
+                    </div>
+
+                    <h3 style="color:#0f172a; font-size:1.05rem; margin-top:1.25rem;">Protocollo Operativo CAD (Passo-Passo):</h3>
+                    <ol class="protocol-steps">
+                        <li class="protocol-step"><strong>Acquisizione Scansione 3D:</strong> Pulizia delle polveri antireflettenti, scansione del modello in gesso, del moncone sfilabile e del modello antagonista. Verificare l'assenza di "buchi" nel file mesh STL.</li>
+                        <li class="protocol-step"><strong>Delimitazione della Linea di Margine:</strong> Tracciare con precisione la chiusura cervicale (spalla o champleve). Evitare rientranze che impedirebbero l'inserimento rigido della corona.</li>
+                        <li class="protocol-step"><strong>Impostazione dei Parametri di Spaziatura (Cement Gap):</strong> Impostare lo spazio azzerato nei primi 1 mm dal margine cervicale e 40–50 µm di spazio cemento nella porzione coronale.</li>
+                        <li class="protocol-step"><strong>Modellazione Volume & Riduzione Anatomica (Cut-Back):</strong> Modellare la corona a pieno contorno e applicare il cut-back controllato di 0.8–1.0 mm per fare spazio alla futura stratificazione ceramica.</li>
+                    </ol>
+
+                    <div class="quiz-gate">
+                        <h4 style="color:#0f172a; font-size:0.95rem;">Verification Gate 3</h4>
+                        <div class="quiz-container">
+                            <p class="text-body">Perché si imposta uno spazio cemento (Cement Gap) pari a 0 µm nei primi 1 mm vicini alla chiusura marginale cervicale nel software CAD?</p>
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="a">
+                                <span>A) Per garantire la sigillatura ermetica marginale ed evitare infiltrazioni di cemento o batteri.</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="b">
+                                <span>B) Per consentire al metallo di espandersi liberamente durante la cottura dell'opaco.</span>
+                            </label>
+                            <button onclick="checkQuiz('q3', 'a', 'feedback-3')" class="btn-check">Verifica Risposta</button>
+                            <div id="feedback-3" class="feedback-box"></div>
+                        </div>
+                    </div>
+
+                    <button data-tab="mod-4" class="btn-next-step">Procedi al Modulo 4: Metallo-Ceramica Base →</button>
+                </div>
+            </section>
+
+            <!-- MODULO 4: METALLO-CERAMICA BASE -->
+            <section id="mod-4" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-tag">Modulo 04 • Estetica & Materiali</span>
+                            <h2 class="card-title">Metallo-Ceramica Base: Ossidazione, Opaco & Stratificazione</h2>
+                        </div>
+                    </div>
+
+                    <div class="text-body">
+                        <p>L'adesione termomeccanica lega-ceramica si basa sulla formazione controllata di uno strato di ossidi superficiali e sulla perfetta corrispondenza del <strong>Coefficiente di Espansione Termica (CTE)</strong> tra struttura in metallo e massa ceramica.</p>
+                    </div>
+
+                    <h3 style="color:#0f172a; font-size:1.05rem; margin-top:1.25rem;">Scheda Fasi di Lavorazione in Forno:</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Fase di Lavorazione</th>
+                                    <th>Trattamento Superficiale / Temperatura</th>
+                                    <th>Tempo di Stazionamento</th>
+                                    <th>Obiettivo Tecnico EBM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Micro-sabbiatura</strong></td>
+                                    <td>Al₂O₃ (50–110 µm) a 2.0 – 2.5 bar</td>
+                                    <td>N.A.</td>
+                                    <td>Creare micro-ritenzioni meccaniche senza deformare i bordi sottili.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cottura d'Ossidazione</strong></td>
+                                    <td>960°C – 980°C in vuoto continuo</td>
+                                    <td>5 minuti</td>
+                                    <td>Formare la pellicola mono-atomica di ossidi per il legame chimico.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Stesura Opaco (Paste/Wash)</strong></td>
+                                    <td>First Wash 940°C / Second Layer 930°C</td>
+                                    <td>1 minuto in vuoto</td>
+                                    <td>Coprire il colore del metallo ed attivare l'adesione chimico-fisica.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Stratificazione Dentina/Smalto</strong></td>
+                                    <td>900°C – 910°C (rampa 55°C/min)</td>
+                                    <td>1 minuto in vuoto</td>
+                                    <td>Sinterizzazione e compattazione delle polveri mediante condensazione.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="quiz-gate">
+                        <h4 style="color:#0f172a; font-size:0.95rem;">Verification Gate 4</h4>
+                        <div class="quiz-container">
+                            <p class="text-body">Quale valore di CTE deve possedere la lega metallica rispetto alla ceramica di rivestimento per garantire uno stato di compressione protettiva?</p>
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="a">
+                                <span>A) Il CTE della lega deve essere leggermente superiore a quello della ceramica (ΔCTE ≈ +0.5 – 1.0 × 10⁻⁶ K⁻¹).</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="b">
+                                <span>B) Il CTE della ceramica deve essere il doppio di quello del metallo per evitare crepe.</span>
+                            </label>
+                            <button onclick="checkQuiz('q4', 'a', 'feedback-4')" class="btn-check">Verifica Risposta</button>
+                            <div id="feedback-4" class="feedback-box"></div>
+                        </div>
+                    </div>
+
+                    <button data-tab="mod-5" class="btn-next-step">Procedi al Modulo 5: Protesi Rimovibile Totale →</button>
+                </div>
+            </section>
+
+            <!-- MODULO 5: PROTESI RIMOVIBILE TOTALE -->
+            <section id="mod-5" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-tag">Modulo 05 • Protesi Mobile</span>
+                            <h2 class="card-title">Protesi Rimovibile Totale: Placche, Valli & Montaggio Denti</h2>
+                        </div>
+                    </div>
+
+                    <div class="text-body">
+                        <p>La protesi totale ripristina la funzione masticatoria ed estetica nel paziente edentulo. Il montaggio dei denti segue il principio dell'<strong>Occlusione Bilanciata Bilaterale (OBB)</strong> per garantire la stabilità dinamica delle basi in resina durante i movimenti funzionali.</p>
+                    </div>
+
+                    <ol class="protocol-steps">
+                        <li class="protocol-step"><strong>Realizzazione Placca Base e Vallo in Cera:</strong> Stampaggio di placca base in resina foto-polimerizzabile sul modello in gesso (esenzione da sottosquadri). Costruzione del vallo in cera dura centrato sulla cresta alveolare.</li>
+                        <li class="protocol-step"><strong>Montaggio in Articolatore:</strong> Trasferimento dell'orientamento del piano di Camper e della linea bipupillare mediante arco di trasferimento e bloccaggio della dimensione verticale d'occlusione (DVO).</li>
+                        <li class="protocol-step"><strong>Montaggio del Gruppo Anteriore:</strong> Posizionamento degli incisivi superiori secondo il supporto labiale e la linea del sorriso, rispettando la curva estetica e il piano occlusale.</li>
+                        <li class="protocol-step"><strong>Montaggio dei Settori Posteriori (OBB):</strong> Posizionamento dei diatorici in contatto simultaneo lavorante e bilanciante per impedire lo scalzamento o il ribaltamento della protesi durante i cicli masticatori.</li>
+                    </ol>
+
+                    <div class="quiz-gate">
+                        <h4 style="color:#0f172a; font-size:0.95rem;">Verification Gate 5</h4>
+                        <div class="quiz-container">
+                            <p class="text-body">Perché nella protesi totale rimovibile si adotta l'Occlusione Bilanciata Bilaterale anziché la guida canina tipica della dentatura naturale?</p>
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="a">
+                                <span>A) Per distribuire uniformemente le forze occlusali ed evitare il ribaltamento della placca base dal lato bilanciante.</span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="b">
+                                <span>B) Per consentire alla cera del vallo di consumarsi più velocemente durante la masticazione.</span>
+                            </label>
+                            <button onclick="checkQuiz('q5', 'a', 'feedback-5')" class="btn-check">Verifica Risposta</button>
+                            <div id="feedback-5" class="feedback-box"></div>
+                        </div>
+                    </div>
+
+                    <button data-tab="mod-6" class="btn-next-step">Procedi al Modulo 6: Video Webinars & Fonti →</button>
+                </div>
+            </section>
+
+            <!-- MODULO 6: WEBINAR ACADEMY & BIBLIOGRAFIA -->
+            <section id="mod-6" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <span class="card-tag">Modulo 06 • Risorse Didattiche Ufficiali</span>
+                            <h2 class="card-title">Academy Video Webinars & Fonti EBM / ISO</h2>
+                        </div>
+                    </div>
+
+                    <h3 style="color:#0f172a; font-size:1.05rem; margin-bottom:0.85rem;">Video Webinars Ufficiali di Settore (Ivoclar, BEGO, VITA):</h3>
+
+                    <div class="webinar-card">
+                        <div class="webinar-academy">Ivoclar Learning Portal</div>
+                        <div class="webinar-title">Mastering Modern Ceramics and Digital Workflows in Dentistry</div>
+                        <div class="webinar-desc">Corso ufficiale Ivoclar sulla gestione dei materiali ceramici avanzati, dalla modellazione alla sinterizzazione e cementazione.</div>
+                        <a href="https://ivoclarlearning.com/" target="_blank" class="webinar-link">→ Accedi al Portale Ivoclar Learning (Webinar & CE Courses)</a>
+                    </div>
+
+                    <div class="webinar-card">
+                        <div class="webinar-academy">BEGO Dental Academy</div>
+                        <div class="webinar-title">BEGO CAD/CAM Tutorials & Individual Prosthetics Workflows</div>
+                        <div class="webinar-desc">Tutorial pratici BEGO sulla modellazione CAD di cucchiai individuali, strutture scheletrate e strategie di nesting/fresatura.</div>
+                        <a href="https://www.bego.com/media-library/tutorials/" target="_blank" class="webinar-link">→ Esplora i Tutorial Tecnici BEGO Academy</a>
+                    </div>
+
+                    <div class="webinar-card">
+                        <div class="webinar-academy">VITA Zahnfabrik Academy</div>
+                        <div class="webinar-title">VITA Ceramics & Milling Materials Technical Courses</div>
+                        <div class="webinar-desc">Corsi pratici sulla stratificazione della metallo-ceramica (VITA VM13/Lumex) e sulla gestione dei blocchetti per sottrazione CAD/CAM.</div>
+                        <a href="https://hs.vita-zahnfabrik.com/courses" target="_blank" class="webinar-link">→ Consulta i Corsi VITA Academy</a>
+                    </div>
+
+                    <h3 style="color:#0f172a; font-size:1.05rem; margin-top:1.5rem; margin-bottom:0.85rem;">Riferimenti Bibliografici & Normative ISO Integrati:</h3>
+                    <div class="text-body">
+                        <div class="ref-item">
+                            <strong>McLean J.W., von Fraunhofer J.A. (1971)</strong>: <em>The estimation of marginal fit of ceramo-metal crowns.</em> British Dental Journal. (Studio cardine per il limite di tolleranza marginale clinica ≤ 120 µm).
+                        </div>
+                        <div class="ref-item">
+                            <strong>Anusavice K.J., Shen C., Rawls R.R. (2012)</strong>: <em>Phillips' Science of Dental Materials (12th ed.)</em>. Elsevier Health Sciences.
+                        </div>
+                        <div class="ref-item">
+                            <strong>ISO 22674:2016</strong>: <em>Dentistry — Metallic materials for fixed and removable restorations and appliances.</em> International Organization for Standardization.
+                        </div>
+                        <div class="ref-item">
+                            <strong>ISO 15912:2016</strong>: <em>Dentistry — Refractory investments and die materials.</em> International Organization for Standardization.
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function showTab(id) {
+                var tabs = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabs.length; i++) {
+                    tabs[i].style.display = "none";
+                    tabs[i].classList.remove("active");
+                }
+                var btns = document.getElementsByClassName("nav-btn");
+                for (var j = 0; j < btns.length; j++) {
+                    btns[j].classList.remove("active");
+                }
+                
+                var target = document.getElementById(id);
+                if (target) {
+                    target.style.display = "block";
+                    target.classList.add("active");
+                }
+                
+                var activeSidebarBtn = document.querySelector('.sidebar .nav-btn[data-tab="' + id + '"]');
+                if (activeSidebarBtn) {
+                    activeSidebarBtn.classList.add("active");
+                }
+                
+                try {
+                    window.scrollTo(0, 0);
+                } catch(e) {}
+            }
+
+            window.openTab = showTab;
+
+            var triggers = document.querySelectorAll('[data-tab]');
+            for (var m = 0; m < triggers.length; m++) {
+                triggers[m].addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var tabId = this.getAttribute('data-tab');
+                    if (tabId) {
+                        showTab(tabId);
+                    }
+                });
+            }
+        });
+
+        function checkQuiz(qName, correctAnswer, feedbackId) {
+            var selected = document.querySelector('input[name="' + qName + '"]:checked');
+            var feedbackEl = document.getElementById(feedbackId);
+            if (!feedbackEl) return;
+            
+            if (!selected) {
+                feedbackEl.textContent = "Seleziona una risposta prima di verificare.";
+                feedbackEl.className = "feedback-box wrong";
+                return;
+            }
+            if (selected.value === correctAnswer) {
+                feedbackEl.textContent = "✓ Corretto! Risposta conforme alle evidenze EBM e normative ISO.";
+                feedbackEl.className = "feedback-box correct";
+            } else {
+                feedbackEl.textContent = "✕ Errato. Rileggi il protocollo operativo e riprova.";
+                feedbackEl.className = "feedback-box wrong";
+            }
+        }
+    </script>
+</body>
+</html>
